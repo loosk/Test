@@ -1,9 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>hello</title>
-    </head>
-    <body>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi aliquam sed a, saepe magnam provident enim doloribus nam, sint unde, sequi temporibus. Ad consectetur molestiae expedita placeat quasi. Quam, rem.</p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toggleable Torch</title>
+    <style>
+        /* Styling for the torch container */
+        .torch-container {
+            width: 100px;
+            height: 200px;
+            position: relative;
+            background-color: #333; /* Base color for torch body */
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-end; /* Align flame to bottom */
+            justify-content: center;
+            overflow: hidden; /* Hide overflow from flame */
+        }
+        
+        /* Styling for the torch flame */
+        .torch-flame {
+            width: 20px;
+            height: 60px;
+            background-color: #f00; /* Red color for flame */
+            border-radius: 50%;
+            animation: flame-animation 1s infinite alternate; /* Flame animation */
+            transform-origin: bottom center; /* Ensure flame grows upwards */
+        }
+        
+        /* Keyframes for flame animation */
+        @keyframes flame-animation {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="torch-container">
+        <div class="torch-flame" id="flame"></div>
+    </div>
+    <br>
+    <button onclick="toggleTorch()">Toggle Torch</button>
+
+    <script>
+        // JavaScript for toggling the torch flame
+        var flame = document.getElementById('flame');
+        var torchOn = false;
+
+        function toggleTorch() {
+            torchOn = !torchOn; // Toggle the torch state
+            
+            if (torchOn) {
+                flame.style.display = 'block'; // Show the flame
+            } else {
+                flame.style.display = 'none'; // Hide the flame
+            }
+        }
+    </script>
+</body>
 </html>

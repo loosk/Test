@@ -1,60 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Toggleable Torch</title>
-    <style>
-        /* Styling for the torch container */
-        .torch-container {
-            width: 100px;
-            height: 200px;
-            position: relative;
-            background-color: #333; /* Base color for torch body */
-            border-radius: 10px;
-            display: flex;
-            align-items: flex-end; /* Align flame to bottom */
-            justify-content: center;
-            overflow: hidden; /* Hide overflow from flame */
-        }
-        
-        /* Styling for the torch flame */
-        .torch-flame {
-            width: 20px;
-            height: 60px;
-            background-color: #f00; /* Red color for flame */
-            border-radius: 50%;
-            animation: flame-animation 1s infinite alternate; /* Flame animation */
-            transform-origin: bottom center; /* Ensure flame grows upwards */
-        }
-        
-        /* Keyframes for flame animation */
-        @keyframes flame-animation {
-            0% { transform: scaleY(1); }
-            100% { transform: scaleY(1.1); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockCoin.Social Magic Theme</title>
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styles */
+    body {
+      background-color: #0F0F19;
+      background-image: url("https://blockcoin.social/background.jpg");
+      background-position: center;
+      background-size: cover;
+      font-family: 'Merriweather', serif;
+      color: #E7E7EB;
+    }
+
+    /* Header styles */
+    header.navbar {
+      background-color: #1F1F2A;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header.navbar .logo {
+      max-width: 100px;
+      height: auto;
+    }
+
+    header.navbar nav ul {
+      list-style-type: none;
+      display: flex;
+    }
+
+    header.navbar nav ul li {
+      margin-right: 15px;
+    }
+
+    header.navbar nav ul li a {
+      color: #E7E7EB;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    /* Main content styles */
+    main {
+      padding: 20px;
+    }
+
+    .post {
+      background-color: #1F1F2A;
+      border: 1px solid #2F2F3A;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .post h2 {
+      color: #E7E7EB;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .post article {
+      margin-bottom: 15px;
+    }
+
+    .post article h3 {
+      color: #E7E7EB;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .post article p {
+      color: #E7E7EB;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .post article footer {
+      display: flex;
+      align-items: center;
+    }
+
+    .badge {
+      background-color: #8F3985;
+      color: #E7E7EB;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    .read-more {
+      color: #8F3985;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .comment {
+      background-color: #3D0C2A;
+      border: 1px solid #2F2F3A;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment h2 {
+      color: #E7E7EB;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .comment article {
+      margin-bottom: 10px;
+    }
+
+    .comment article p {
+      color: #E7E7EB;
+      font-size: 16px;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #1F1F2A;
+      color: #E7E7EB;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Form styles */
+    .comment-form {
+      margin-top: 20px;
+    }
+
+    .comment-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #2F2F3A;
+      border-radius: 8px;
+      resize: none;
+      font-size: 16px;
+      color: #E7E7EB;
+      background-color: #1F1F2A;
+    }
+
+    .comment-form button {
+      background-color: #8F3985;
+      color: #E7E7EB;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="torch-container">
-        <div class="torch-flame" id="flame"></div>
-    </div>
-    <br>
-    <button onclick="toggleTorch()">Toggle Torch</button>
+  <header class="navbar">
+    <img src="https://blockcoin.social/logo.png" alt="BlockCoin.Social Logo" class="logo">
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <script>
-        // JavaScript for toggling the torch flame
-        var flame = document.getElementById('flame');
-        var torchOn = false;
+  <main>
+    <section class="post">
+      <h2>Latest Posts</h2>
+      <article>
+        <h3>Post Title</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero vitae leo tincidunt, nec suscipit ligula iaculis.</p>
+        <footer>
+          <span class="badge">New</span>
+          <a href="#" class="read-more" onclick="toggleExpand(this)">Read more...</a>
+        </footer>
+      </article>
+      <article>
+        <h3>Another Post</h3>
+        <p>Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+        <footer>
+          <span class="badge">Updated</span>
+          <a href="#" class="read-more" onclick="toggleExpand(this)">Read more...</a>
+        </footer>
+      </article>
+    </section>
 
-        function toggleTorch() {
-            torchOn = !torchOn; // Toggle the torch state
-            
-            if (torchOn) {
-                flame.style.display = 'block'; // Show the flame
-            } else {
-                flame.style.display = 'none'; // Hide the flame
-            }
-        }
-    </script>
+    <section class="comment" id="commentsSection">
+      <h2>Recent Comments</h2>
+      <div id="commentsContainer">
+        <!-- Existing comments will be dynamically added here -->
+      </div>
+      <button onclick="toggleCommentForm()">+ Add Comment</button>
+      <form id="commentForm" class="comment-form" style="display: none;" onsubmit="addComment(event)">
+        <textarea id="commentText" rows="4" placeholder="Write your comment..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BlockCoin.Social. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Function to toggle the display of the comment form
+    function toggleCommentForm() {
+      var commentForm = document.getElementById('commentForm');
+      if (commentForm.style.display === 'none' || commentForm.style.display === '') {
+        commentForm.style.display = 'block'; // Show the comment form
+      } else {
+        commentForm.style.display = 'none'; // Hide the comment form
+      }
+    }
+
+    // Function to add a new comment
+    function addComment(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var commentText = document.getElementById('commentText').value.trim();
+      if (commentText === '') {
+        alert('Please enter a comment.');
+        return;
+      }
+
+      var commentsContainer = document.getElementById('commentsContainer');
+      var newComment = document.createElement('article');
+      newComment.innerHTML = '<p><strong>You:</strong> ' + commentText + '</p>';
+      commentsContainer.prepend(newComment); // Add new comment to the beginning
+
+      document.getElementById('commentForm').reset(); // Reset form fields
+      toggleCommentForm(); // Hide the comment form after submission
+    }
+  </script>
 </body>
 </html>
